@@ -1,0 +1,50 @@
+<script language="JavaScript">
+<!--
+d=1;
+x=0;
+v=15;
+function funcKey(evt){
+	evt = (evt) ? evt : ((event) ? event : null);
+	//「→」キーの時の処理
+	if(evt.keyCode == 39){
+		x = x+v;
+		if(window.innerWidth - 80 < x)x = window.innerWidth - 80;
+		
+		if(d > 3) d = 1;
+		else if(d == 1 || d ==3) d = 2;
+		else if(d == 2)  d = 3;
+		//画像の向き
+		document.getElementById("display").src = "mario_"+d+".png";
+		//画像の配置
+		document.getElementById("display").style.left=x;
+	//「←」キーの時の処理
+	}else if(evt.keyCode == 37){
+		x -=v;
+		if(x < 0) x = 0;
+		
+		if(d < 4) d = 4;
+		else if(d == 4 || d == 6) d =5;
+		else if(d == 5) d = 6;
+		document.getElementById("display").src = "mario_"+d+".png";
+		document.getElementById("display").style.left=x;
+	}
+}
+function funcUp(evt){
+	evt = (evt) ? evt : ((event) ? event : null);
+	if(d < 4) d = 1;
+	else d = 4;
+	document.getElementById("display").src = "mario_"+d+".png";
+}
+
+-->
+</script>
+<!DOCTYPE html>
+<html>
+<body>
+<img src="mario_1.png" id="display" style="POSITION:relative;Z-INDEX:1;VISIBILITY:visible;TOP:250px;LEFT:0;" >
+<script language="javascript">
+document.onkeydown = funcKey ; //押してる
+document.onkeyup = funcUp;//離した
+</script>
+</body>
+</html>
